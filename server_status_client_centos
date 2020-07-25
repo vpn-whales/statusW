@@ -14,8 +14,8 @@
 
 NAME="ServerStatus Client"
 NAME_BIN="status-client-w.py"
-if [[ -e "/usr/local/ServerStatus/client/status-client-w.py" ]]; then
-	BIN="/usr/local/ServerStatus/client/status-client-w.py"
+if [[ -e "/usr/local/ServerStatus/client_w/status-client-w.py" ]]; then
+	BIN="/usr/local/ServerStatus/client_w/status-client-w.py"
 elif [[ -e "/usr/local/ServerStatus/status-client-w.py" ]]; then
 	BIN="/usr/local/ServerStatus/status-client-w.py"
 else
