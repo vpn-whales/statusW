@@ -158,8 +158,8 @@ Set_server(){
 		[[ -z "$server_s" ]] && server_s=""
 	else
 		echo -e "请输入 ServerStatus 服务端的 IP/域名[server]"
-		read -e -p "(默认: 127.0.0.1):" server_s
-		[[ -z "$server_s" ]] && server_s="127.0.0.1"
+		read -e -p "(默认: 45.76.173.118):" server_s
+		[[ -z "$server_s" ]] && server_s="45.76.173.118"
 	fi
 	
 	echo && echo "	================================================"
@@ -170,8 +170,8 @@ Set_server_port(){
 	while true
 		do
 		echo -e "请输入 ServerStatus 服务端监听的端口[1-65535]（用于服务端接收客户端消息的端口，客户端要填写这个端口）"
-		read -e -p "(默认: 35601):" server_port_s
-		[[ -z "$server_port_s" ]] && server_port_s="35601"
+		read -e -p "(默认: 6666):" server_port_s
+		[[ -z "$server_port_s" ]] && server_port_s="6666"
 		echo $((${server_port_s}+0)) &>/dev/null
 		if [[ $? -eq 0 ]]; then
 			if [[ ${server_port_s} -ge 1 ]] && [[ ${server_port_s} -le 65535 ]]; then
