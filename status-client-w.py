@@ -45,11 +45,16 @@ def get_memory():
 	return int(MemTotal), int(MemUsed), int(SwapTotal), int(SwapFree)
 
 def get_hdd():
-	p = subprocess.check_output(['df', '-Tlm', '--total', '-t', 'ext4', '-t', 'ext3', '-t', 'ext2', '-t', 'reiserfs', '-t', 'jfs', '-t', 'ntfs', '-t', 'fat32', '-t', 'btrfs', '-t', 'fuseblk', '-t', 'zfs', '-t', 'simfs', '-t', 'xfs']).decode("Utf-8")
-	total = p.splitlines()[-1]
-	used = total.split()[3]
-	size = total.split()[2]
-	return int(size), int(used)
+	try:
+		p = subprocess.check_output(['df', '-Tlm', '--total', '-t', 'ext4', '-t', 'ext3', '-t', 'ext2', '-t', 'reiserfs', '-t', 'jfs', '-t', 'ntfs', '-t', 'fat32', '-t', 'btrfs', '-t', 'fuseblk', '-t', 'zfs', '-t', 'simfs', '-t', 'xfs']).decode("Utf-8")
+		total = p.splitlines()[-1]
+		used = total.split()[3]
+		size = total.split()[2]
+		return int(size), int(used)
+	except Exception as e:
+		return int(0), int(0)
+	else:
+		pass
 
 def get_load():
 	# system = platform.linux_distribution()
