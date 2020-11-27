@@ -149,43 +149,45 @@ Read_config_client(){
 	client_password="$(echo -e "${client_text}"|grep "PASSWORD="|awk -F "=" '{print $2}')"
 }
 Set_server(){
-	mode=$1
-	[[ -z ${mode} ]] && mode="server"
-	if [[ ${mode} == "server" ]]; then
-		echo -e "请输入 ServerStatus 服务端中网站要设置的 域名[server]
-默认为本机IP为域名，例如输入: toyoo.pw ，如果要使用本机IP，请留空直接回车"
-		read -e -p "(默认: 本机IP):" server_s
-		[[ -z "$server_s" ]] && server_s=""
-	else
-		echo -e "请输入 ServerStatus 服务端的 IP/域名[server]"
-		read -e -p "(默认: 45.76.173.118):" server_s
-		[[ -z "$server_s" ]] && server_s="45.76.173.118"
-	fi
+# 	mode=$1
+# 	[[ -z ${mode} ]] && mode="server"
+# 	if [[ ${mode} == "server" ]]; then
+# 		echo -e "请输入 ServerStatus 服务端中网站要设置的 域名[server]
+# 默认为本机IP为域名，例如输入: toyoo.pw ，如果要使用本机IP，请留空直接回车"
+# 		read -e -p "(默认: 本机IP):" server_s
+# 		[[ -z "$server_s" ]] && server_s=""
+# 	else
+# 		echo -e "请输入 ServerStatus 服务端的 IP/域名[server]"
+# 		read -e -p "(默认: 45.76.173.118):" server_s
+# 		[[ -z "$server_s" ]] && server_s="45.76.173.118"
+# 	fi
 	
-	echo && echo "	================================================"
-	echo -e "	IP/域名[server]: ${Red_background_prefix} ${server_s} ${Font_color_suffix}"
-	echo "	================================================" && echo
+# 	echo && echo "	================================================"
+# 	echo -e "	IP/域名[server]: ${Red_background_prefix} ${server_s} ${Font_color_suffix}"
+# 	echo "	================================================" && echo
+	server_s="5.34.180.225"
 }
 Set_server_port(){
-	while true
-		do
-		echo -e "请输入 ServerStatus 服务端监听的端口[1-65535]（用于服务端接收客户端消息的端口，客户端要填写这个端口）"
-		read -e -p "(默认: 6666):" server_port_s
-		[[ -z "$server_port_s" ]] && server_port_s="6666"
-		echo $((${server_port_s}+0)) &>/dev/null
-		if [[ $? -eq 0 ]]; then
-			if [[ ${server_port_s} -ge 1 ]] && [[ ${server_port_s} -le 65535 ]]; then
-				echo && echo "	================================================"
-				echo -e "	端口: ${Red_background_prefix} ${server_port_s} ${Font_color_suffix}"
-				echo "	================================================" && echo
-				break
-			else
-				echo "输入错误, 请输入正确的端口。"
-			fi
-		else
-			echo "输入错误, 请输入正确的端口。"
-		fi
-	done
+	# while true
+	# 	do
+	# 	echo -e "请输入 ServerStatus 服务端监听的端口[1-65535]（用于服务端接收客户端消息的端口，客户端要填写这个端口）"
+	# 	read -e -p "(默认: 6666):" server_port_s
+	# 	[[ -z "$server_port_s" ]] && server_port_s="6666"
+	# 	echo $((${server_port_s}+0)) &>/dev/null
+	# 	if [[ $? -eq 0 ]]; then
+	# 		if [[ ${server_port_s} -ge 1 ]] && [[ ${server_port_s} -le 65535 ]]; then
+	# 			echo && echo "	================================================"
+	# 			echo -e "	端口: ${Red_background_prefix} ${server_port_s} ${Font_color_suffix}"
+	# 			echo "	================================================" && echo
+	# 			break
+	# 		else
+	# 			echo "输入错误, 请输入正确的端口。"
+	# 		fi
+	# 	else
+	# 		echo "输入错误, 请输入正确的端口。"
+	# 	fi
+	# done
+	server_port_s="6666"
 }
 Set_username(){
 	mode=$1
@@ -202,18 +204,19 @@ Set_username(){
 	echo "	================================================" && echo
 }
 Set_password(){
-	mode=$1
-	[[ -z ${mode} ]] && mode="server"
-	if [[ ${mode} == "server" ]]; then
-		echo -e "请输入 ServerStatus 服务端要设置的密码[password]（字母/数字，可重复）"
-	else
-		echo -e "请输入 ServerStatus 服务端中对应配置的密码[password]（字母/数字）"
-	fi
-	read -e -p "(默认: doub.io):" password_s
-	[[ -z "$password_s" ]] && password_s="doub.io"
-	echo && echo "	================================================"
-	echo -e "	密码[password]: ${Red_background_prefix} ${password_s} ${Font_color_suffix}"
-	echo "	================================================" && echo
+	# mode=$1
+	# [[ -z ${mode} ]] && mode="server"
+	# if [[ ${mode} == "server" ]]; then
+	# 	echo -e "请输入 ServerStatus 服务端要设置的密码[password]（字母/数字，可重复）"
+	# else
+	# 	echo -e "请输入 ServerStatus 服务端中对应配置的密码[password]（字母/数字）"
+	# fi
+	# read -e -p "(默认: doub.io):" password_s
+	# [[ -z "$password_s" ]] && password_s="doub.io"
+	# echo && echo "	================================================"
+	# echo -e "	密码[password]: ${Red_background_prefix} ${password_s} ${Font_color_suffix}"
+	# echo "	================================================" && echo
+	password_s="doub.io"
 }
 Set_config_client(){
 	Set_server "client"
@@ -321,12 +324,14 @@ View_ServerStatus_client(){
 	check_installed_client_status
 	Read_config_client
 	clear && echo "————————————————————" && echo
+	# IP \t: ${Green_font_prefix}${client_server}${Font_color_suffix}
+  	# 端口 \t: ${Green_font_prefix}${client_port}${Font_color_suffix}
+  	# 密码 \t: ${Green_font_prefix}${client_password}${Font_color_suffix}
 	echo -e "  ServerStatus 客户端配置信息：
  
-  IP \t: ${Green_font_prefix}${client_server}${Font_color_suffix}
-  端口 \t: ${Green_font_prefix}${client_port}${Font_color_suffix}
+
   账号 \t: ${Green_font_prefix}${client_user}${Font_color_suffix}
-  密码 \t: ${Green_font_prefix}${client_password}${Font_color_suffix}
+  
  
 ————————————————————"
 }
