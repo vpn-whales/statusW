@@ -165,7 +165,7 @@ Set_server(){
 # 	echo && echo "	================================================"
 # 	echo -e "	IP/域名[server]: ${Red_background_prefix} ${server_s} ${Font_color_suffix}"
 # 	echo "	================================================" && echo
-	server_s="aws-receiver.whales.zone"
+	server_s="sr1.wocao.one"
 }
 Set_server_port(){
 	# while true
